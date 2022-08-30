@@ -57,9 +57,11 @@ Route::get('/laporan/{karyawan}', 'admin\MasterLaporanAbsenKaryawanController@pd
 Route::get('/laporan-exel/{karyawan}', 'admin\MasterLaporanAbsenKaryawanController@exelDetail')->name('laporan-exel_detail');
 Route::get('pisah', 'admin\MasterAbensiController@pisah')->name('pisah');
 
+Route::resource('kategori', 'admin\MasterKategoriController',['names'=>'kategori']);
+Route::resource('pengumuman', 'admin\PengumumanController',['names'=>'pengumuman']);
 Route::resource('admin', 'admin\MasterAdminController',['names'=>'admin']);
 Route::resource('cuti', 'admin\CutiKaryawan',['names'=>'cuti']);
-
+Route::resource('KaryawanJabatan', 'admin\KaryawanJabatan',['names'=>'KaryawanJabatan']);
 Route::resource('jabatan', 'admin\MasterJabatanController',['names'=>'jabatan']);
 Route::resource('departement', 'admin\MasterDapartementController',['names'=>'dapartement']);
 Route::resource('jamKerja', 'admin\MasterJamKerjaController',['names'=>'jamKerja']);

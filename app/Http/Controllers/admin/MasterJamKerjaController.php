@@ -61,6 +61,11 @@ class MasterJamKerjaController extends Controller
      */
     public function store(Request $request, JamKerja $jamKerja)
     {
+        $validated = $request->validate([
+            'nama_shift' => 'required',
+            'waktu_awal' => 'required',
+            'waktu_akhir' => 'required',
+        ]);
 			try {
 				$cek = $jamKerja->create($request->all());
 				if ($cek) {
@@ -106,6 +111,12 @@ class MasterJamKerjaController extends Controller
 		
     public function update(Request $request, JamKerja $jamKerja)
     {
+        $validated = $request->validate([
+            'nama_shift' => 'required',
+            'waktu_awal' => 'required',
+            'waktu_akhir' => 'required',
+        ]);
+
 			try {
 				$cek = $jamKerja->update($request->all());
 				if ($cek) {

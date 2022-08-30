@@ -85,13 +85,12 @@ class MasterKaryawanController extends Controller
 			DB::beginTransaction();
       try {
 				$image = $request->file('image');
-
 				if ($request->file('image') != null) {
 					$imageName = 'profile_pengguna_'.Str::random(5).'.'.$image->extension();
 
-					$image->storeAs('/public/pengguna/',$imageName);
+					$image->storeAs('/public/images/',$imageName);
 
-					$request['foto'] = 'https://absensi.mbcconsulting.id/storage/pengguna/'.$imageName;
+					$request['foto'] = 'http://localhost/stikom_admin/storage/app/public/images/'.$imageName;
 				}
 
 				if ($request->newPass == $request->confirmPass) {
@@ -153,15 +152,19 @@ class MasterKaryawanController extends Controller
 				if ($request->file('image') != null) {
 					$imageName = 'profile_pengguna_'.Str::random(5).'.'.$image->extension();
 
-					$destination = storage_path('app/public/pengguna/');
+					$destination = storage_path('app/public/images');
+
+			//		dd($destination);
 					if ($karyawan->foto != null) {
 						try {
 							unlink($destination.$karyawan->foto);
 						} catch (\Throwable $th) {}
 					}
-					$image->storeAs('/public/pengguna/',$imageName);
 
-					$request['foto'] = 'https://absensi.mbcconsulting.id/storage/pengguna/'.$imageName;
+					$image->storeAs('/public/images/',$imageName);
+
+					$request['foto'] = 'http://localhost/stikom_admin/storage/app/public/images/'.$imageName;
+
 				}
 
 				if ($request->newPass != null) {
@@ -194,8 +197,8 @@ class MasterKaryawanController extends Controller
 				}
 
 			} catch (\Throwable $th) {
-				DB::rollBack();
-				return back()->with('error', $th->getMessage());
+					DB::rollBack();
+					return back()->with('error', $th->getMessage());
 			}
     }
 

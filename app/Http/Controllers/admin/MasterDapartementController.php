@@ -39,12 +39,14 @@ class MasterDapartementController extends Controller
 
 										$nama_departement =	Departement::where('id',$data->sub_departement)->first();
 
+										$nama_depart = !empty($nama_departement->nama_departement) ? $nama_departement->nama_departement :0;
 
-		            return $nama_departement->nama_departement;
+
+		            return $nama_depart;
 		          })
 							->editColumn('pimpinan',function ($data){
 
-								$pimpinan = !empty($data->karyawan->nama_lengkap) ? $data->karyawan->nama_lengkap : 0;
+								$pimpinan = !empty($data->karyawan->nama_lengkap)  ? $data->karyawan->nama_lengkap : 0;
 								return $pimpinan;
 							})
               ->rawColumns(['action'])

@@ -9,7 +9,6 @@
 }
 </style>
 <script type="text/javascript">
-$( function() {
 var availableTags = [
 
        <?php foreach ($karyawan as $key) {  ?>
@@ -19,6 +18,8 @@ var availableTags = [
            },
      <?php } ?>
 ];
+
+$( function() {
 
      $("#fooInput").autocomplete({
      source: availableTags,
@@ -35,22 +36,30 @@ var availableTags = [
      }
      });
 
-     $("#fooInput2").autocomplete({
-     source: availableTags,
-     select: function(event, ui) {
-       var e = ui.item;
-       var result = "<p>label : " + e.label + " - id : " + e.id + "</p>";
 
-       $('#karyawan_id2').val(e.id);
-
-     }
-     });
 
 
 
 
 
  });
+
+ function autoc(id) {
+   $("#fooInput"+id).autocomplete({
+   source: availableTags,
+   select: function(event, ui) {
+     var e = ui.item;
+     var result = "<p>label : " + e.label + " - id : " + e.id + "</p>";
+
+     console.log(result);;
+
+     $('#karyawan_id'+id).val(e.id);
+
+   }
+   });
+
+  // alert('l');
+ }
 </script>
 
 
@@ -70,21 +79,21 @@ var availableTags = [
           <div class="form-row">
             <div class="form-group col-md-12">
               <label for="inputEmail4">Nama Dapartemen</label>
-              <input type="text" name="nama_departement" class="form-control" id="inputEmail4">
+              <input type="text" name="nama_departement" class="form-control" id="inputEmail4" required>
             </div>
             <div class="form-group col-md-12">
               <label for="inputEmail4">Sub Dapartemen</label>
-              <input type="text" name="sub_departement" class="form-control" id="inputEmail4">
+              <input type="text" name="sub_departement" class="form-control" id="inputEmail4" required>
             </div>
             <div class="form-group col-md-12">
               <label for="inputEmail4">Nama Pemimpin</label>
               <input type="text" name="nama_karyawan" class="form-control" id="fooInput">
-              <input type="hidden" name="pimpinan" class="form-control" id="karyawan_id">
+              <input type="hidden" name="pimpinan" class="form-control" id="karyawan_id" required>
               <!-- <input type="text" name="pimpinan" class="form-control" id="inputEmail4"> -->
             </div>
             <div class="form-group col-md-12">
               <label for="inputEmail4">Jabatan</label>
-              <input type="text" name="jabatan" class="form-control" id="inputEmail4">
+              <input type="text" name="jabatan" class="form-control" id="inputEmail4" required>
             </div>
           </div>
         </div>
@@ -120,12 +129,16 @@ var availableTags = [
               </div>
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Sub Dapartemen</label>
-                <input type="text" name="sub_departement" value="{{$dp->sub_departement}}" class="form-control" id="inputEmail4">
+                <select name="sub_departement" class="form-control">
+                  @foreach($data as $dt)
+                  <option {{$dp->sub_departement == $dt->id ? 'selected':''}} value="{{$dt->id}}">{{$dt->nama_departement}}</option>
+                  @endforeach
+                </select>
               </div>
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Nama Pemimpin</label>
-                <input type="text" name="nama_karyawan" class="form-control" value="<?= $dp->karyawan->nama_lengkap;  ?>" id="fooInput2">
-                <input type="hidden" name="pimpinan" class="form-control" value="<?=  $dp->id;  ?>" id="karyawan_id2">
+                <input type="text" name="nama_karyawan" onclick="autoc(<?= $dp->id; ?>)"  class="form-control" value="<?= $dp->karyawan->nama_lengkap;  ?>" id="fooInput<?= $dp->id; ?>" required>
+                <input type="hidden" name="pimpinan" class="form-control" value="<?=  $dp->pimpinan;  ?>" id="karyawan_id<?= $dp->id; ?>">
               </div>
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Jabatan</label>
@@ -143,44 +156,55 @@ var availableTags = [
   </div>
 @endforeach
 
-  <div class="list-data-karyawan">
-    <div class="container-fluid">
-      <!-- Page Heading -->
-      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Data Dapartemen</h1>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+<!-- Section Content -->
+      <div class="section-content" data-aos="fade-up">
+        <div class="container">
+          <div class="main-content">
+
+            <div class="header row">
+                          <div class="col-md-12">
+                            <p class="header-title">
+                              Departemen
+                            </p>
+                            
+                            <br />
+                          </div>
+                        </div>
+                <div class="table-responsive">
+               <table class="table table-bordered" id="dataTable">
+             
+                   
+                        <thead>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
           Tambah
         </button>
-        {{-- <button class="btn btn-primary">Tambah</button> --}}
+                            <tr>
+                                <th>No</th>
+                                <th>Dapartemen</th>
+                                <th>Sub Dapartemen</th>
+                                <th>Pimpinan</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                              <th>No</th>
+                              <th>Dapartemen</th>
+                              <th>Sub Dapartemen</th>
+                              <th>Pimpinan</th>
+                              <th>Action</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
+                </div>
       </div>
-
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Dapartemen</th>
-                        <th>Sub Dapartemen</th>
-                        <th>Pimpinan</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                      <th>No</th>
-                      <th>Dapartemen</th>
-                      <th>Sub Dapartemen</th>
-                      <th>Pimpinan</th>
-                      <th>Action</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
     </div>
   </div>
+
 
 <script>
 	var table = $('#dataTable').DataTable({
@@ -190,10 +214,7 @@ var availableTags = [
 		autoWidth:false,
 		ajax: {
 			url: "{{ route('dapartement.index') }}",
-			// data: function (d) {
-			// 	d.jenis = $('#jenis').val(),
-			// 	d.search = $('input[type="search"]').val()
-			// 	}
+
 		},
 		columns: [
 				{data: 'DT_RowIndex', name: 'DT_Row_Index', orderable: false, searchable: false},

@@ -69,7 +69,7 @@
                 <label for="inputEmail4">tahun</label>
                 <input type="text" name="tahun" value="<?= $dp->tahun ?>" class="form-control" id="tahun">
 
-                <input type="text" name="id" value="<?= $dp->id ?>" class="form-control" id="tahun">
+                <input type="hidden" name="id" value="<?= $dp->id ?>" class="form-control" id="tahun">
               </div>
 
               <div class="form-group col-md-12">

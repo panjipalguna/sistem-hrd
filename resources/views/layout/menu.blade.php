@@ -1,108 +1,152 @@
-<aside>
-   <div class="top">
-     <div class="logo">
-       <img src="assets/images/logo stikom.png" />
-       <h2 cla>ITB <span class="primary">STIKOM Bali</span></h2>
-     </div>
-     <div class="close" id="close-btn">
-       <span class="material-icons-sharp">close</span>
-     </div>
-   </div>
+<div id="sidebar-wrapper">
+        <div class="sidebar-heading text-center">
+          <div class="admin-profile" id="sl_ap">
+            <div class="admin-picture">
+              <img src="images/logo stikom.png" alt="">
+            </div>
+            <p class="admin-name">
+              ITB STIKOM Bali
+            </p>
+            <p class="admin-level">
+              Admin Utama
+            </p>
+          </div>
+        </div>
 
-   <div class="sidebar">
-     <a href="index.html">
-       <span class="material-icons-sharp">grid_view</span>
-       <h3>Dashboard</h3>
-     </a>
+        <div class="list-group list-group-flush">
+          <a href="#" class="list-group-item list-group-item-action active">
+            <div class="d-flex w-100 align-content-center">
+              <span class="material-icons-sharp">grid_view</span>
+              <h5 class="mb-1 mr-5">Dashboard</h5>
+            </div>
+          </a>
+          <a href="{{route('karyawan.index')}}" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 align-content-center">
+              <span class="material-icons-sharp">text_snippet</span>
+              <h5 class="mb-1">Data Karyawan</h5>
+            </div>
+          </a>
 
-     <a href="{{route('karyawan.index')}}" class="active">
-       <span class="material-icons-sharp">text_snippet</span>
-       <h3>Data Karyawan</h3>
-     </a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-btn list-group-item list-group-item-action">
+              <div class="d-flex w-100 d-flex justify-content-between align-items-center">
+                <h5>Lihat Data HRD</h5>
+                <span class="material-icons-sharp">expand_circle_down</span>
+              </div>
+            </a>
+            <div class="dropdown-container">
+              <a href="{{route('dapartement.index')}}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Data Departmen</h5>
+                </div>
+              </a>
+              <a href="{{route('KaryawanJabatan.index')}}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Data Jabatan</h5>
+                </div>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Data Jam Kerja</h5>
+                </div>
+              </a>
+              <a href="{{url('master_cuti')}}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Data Cuti</h5>
+                </div>
+              </a>
 
-     <div class="dropdown">
-       <a href="#" class="dropdown-btn">
-         <h3>Lihat Data HRD</h3>
-         <span class="material-icons-sharp">expand_circle_down</span>
-       </a>
-       <div class="dropdown-container">
-         <a href="{{route('dapartement.index')}}">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Data Departmen</h3>
-         </a>
-         <a href="#">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Data Jabatan</h3>
-         </a>
-         <a href="#">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Data Jam Kerja</h3>
-         </a>
-         <a href="{{route('cuti.index')}}">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Transaksi Cuti</h3>
-         </a>
+              <a href="{{route('cuti.index')}}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Transaksi Cuti</h5>
+                </div>
+              </a>
 
-         <a href="{{url('master_cuti')}}">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Master Cuti</h3>
-         </a>
 
-         <a href="#">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Periode Gaji</h3>
-         </a>
-         <a href="#">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Daftar Gaji</h3>
-         </a>
-         <a href="#">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Pengumuman</h3>
-         </a>
-       </div>
-     </div>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Periode Gaji</h5>
+                </div>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Daftar Gaji</h5>
+                </div>
+              </a>
+              <a href="{{ route('pengumuman.index') }}" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Pengumuman</h5>
+                </div>
+              </a>
+            </div>
+          </div>
 
-     <div class="dropdown">
-       <a href="#" class="dropdown-btn">
-         <h3>Data Kehadiran</h3>
-         <span class="material-icons-sharp">expand_circle_down</span>
-       </a>
-       <div class="dropdown-container">
-         <a href="#">
-           <span class="material-icons-sharp">photo_camera</span>
-           <h3>Data Absensi</h3>
-         </a>
-         <a href="#">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Data Lembur</h3>
-         </a>
-         <a href="#">
-           <span class="material-icons-sharp">text_snippet</span>
-           <h3>Data Lembur</h3>
-         </a>
-       </div>
-     </div>
+          <div class="dropdown">
+            <a href="#" class="dropdown-btn list-group-item list-group-item-action">
+              <div class="d-flex w-100 d-flex justify-content-between align-items-center">
+                <h5>Data Kehadiran</h5>
+                <span class="material-icons-sharp">expand_circle_down</span>
+              </div>
+            </a>
+            <div class="dropdown-container">
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">photo_camera</span>
+                  <h5 class="mb-1">Data Absensi</h5>
+                </div>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Data Lembur</h5>
+                </div>
+              </a>
+              <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 align-content-center">
+                  <span class="material-icons-sharp">text_snippet</span>
+                  <h5 class="mb-1">Data Izin</h5>
+                </div>
+              </a>
+            </div>
+          </div>
 
-     <a href="#">
-       <span class="material-icons-sharp">text_snippet</span>
-       <h3>KPI (Indikator)</h3>
-     </a>
-     <a href="#">
-       <span class="material-icons-sharp">text_snippet</span>
-       <h3>KPA (Penilaian)</h3>
-     </a>
-     <a href="#">
-       <span class="material-icons-sharp">text_snippet</span>
-       <h3>Set Kompetensi</h3>
-     </a>
-     <a href="#">
-       <span class="material-icons-sharp">settings</span>
-       <h3>Profile</h3>
-     </a>
-     <a href="/login.html">
-       <span class="material-icons-sharp">logout</span>
-       <h3>Logout</h3>
-     </a>
-   </div>
-</aside>
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 align-content-center">
+              <span class="material-icons-sharp">text_snippet</span>
+              <h5 class="mb-1">KPI (Indikator)</h5>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 align-content-center">
+              <span class="material-icons-sharp">text_snippet</span>
+              <h5 class="mb-1">KPA (Penilaian)</h5>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 align-content-center">
+              <span class="material-icons-sharp">text_snippet</span>
+              <h5 class="mb-1">Set Kompetensi</h5>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 align-content-center">
+              <span class="material-icons-sharp">settings</span>
+              <h5 class="mb-1">Profile</h5>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 align-content-center">
+              <span class="material-icons-sharp">logout</span>
+              <h5 class="mb-1">Logout</h5>
+            </div>
+          </a>
+        </div>
+</div>

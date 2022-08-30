@@ -8,8 +8,7 @@ use Yajra\DataTables\DataTables;
 use App\Models\TransCutiKaryawanModel;
 use App\Models\Karyawan;
 use App\Models\CutiModel;
-
-
+use Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -27,6 +26,10 @@ class CutiKaryawan extends Controller
     $periode_cuti = DB::table('master_cuties')->get();
     $data = $transCutiKaryawanModel->get();
 
+    $nama = auth()->guard('karyawan')->user()->nama_lengkap;
+    $id_kar = auth()->guard('karyawan')->user()->id;
+
+
     $karyawan = Karyawan::get();
     if ($request->ajax()) {
         return DataTables::of($data)
@@ -43,7 +46,7 @@ class CutiKaryawan extends Controller
           ->rawColumns(['action'])
           ->make(true);
       }
-    return view('admin.dashboard-trans-cuti', compact('data','periode_cuti','karyawan'));
+    return view('admin.dashboard-trans-cuti', compact('data','periode_cuti','karyawan','nama','id_kar'));
   }
 
 
@@ -51,7 +54,6 @@ class CutiKaryawan extends Controller
   public function store(Request $request, TransCutiKaryawanModel $transCutiKaryawanModel)
   {
     try {
-    //  $cek = $departement->create($request->all());
 
     $cek = TransCutiKaryawanModel::updateOrCreate(['id' => $request->id], [
 
@@ -72,7 +74,7 @@ class CutiKaryawan extends Controller
       }
 
     } catch (\Throwable $th) {
-      return back()->with('error',$th->getMessage());
+        return back()->with('error',$th->getMessage());
     }
   }
 
@@ -84,8 +86,6 @@ class CutiKaryawan extends Controller
   public function destroy($id)
   {
     try {
-
-//dd($id);
       $data =  TransCutiKaryawanModel::find($id)->delete();
 
       if ($data) {
@@ -102,8 +102,6 @@ class CutiKaryawan extends Controller
         public function master_cuti(Request $request)
         {
           $data = DB::table('master_cuties')->get();
-
-
         //  $karyawan = Karyawan::get();
           if ($request->ajax()) {
               return DataTables::of($data)
@@ -128,7 +126,7 @@ class CutiKaryawan extends Controller
       {
         // code...
         try {
-        //  $cek = $departement->create($request->all());
+
 
         $cek = CutiModel::updateOrCreate(['id' => $request->id], [
 

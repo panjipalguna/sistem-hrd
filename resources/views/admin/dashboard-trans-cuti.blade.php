@@ -68,8 +68,8 @@ var availableTags = [
 
             <div class="form-group col-md-12">
               <label for="inputEmail4">Nama karyawan</label>
-              <input type="text" name="nama_karyawan" class="form-control" id="fooInput">
-              <input type="hidden" name="karyawan_id" class="form-control" id="karyawan_id">
+              <input type="text" name="nama_karyawan" value="<?= $nama; ?>" class="form-control" id="fooInput">
+              <input type="hidden" name="karyawan_id" class="form-control" value="<?= $id_kar; ?>" id="karyawan_id">
             </div>
 
             <div class="form-group col-md-12">
@@ -99,9 +99,10 @@ var availableTags = [
             <div class="form-group col-md-12">
               <label for="inputEmail4">Persetujuan Atasan</label>
               <select name="bool_persetujuan_atasan" class="form-control">
-                  <option value=""> </option>
-                  <option value="true"> DISETUJUI </option>
+
                   <option value="false"> TIDAK DISETUJUI  </option>
+                  <option value="true"> DISETUJUI </option>
+
               </select>
             </div>
 
@@ -147,8 +148,8 @@ var availableTags = [
             <div class="form-row">
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Nama karyawan</label>
-                <input type="text" name="nama_karyawan" value="<?= $dp->karyawan->nama_lengkap; ?>" class="form-control" id="fooInput2">
-                <input type="hidden" name="karyawan_id" class="form-control" value="<?= $dp->karyawan_id;  ?>" id="karyawan_id2">
+                <input type="text" name="nama_karyawan" value="<?= $nama; ?>" class="form-control" id="fooInput2">
+                <input type="hidden" name="karyawan_id" class="form-control" value="<?= $id_kar;  ?>" id="karyawan_id2">
 
                 <input type="hidden" name="id" class="form-control" value="<?= $dp->id;  ?>">
               </div>
@@ -178,13 +179,16 @@ var availableTags = [
                   @endforeach
                 </select>
               </div>
-
+<?php
+   $persetujuan =   $dp->bool_persetujuan_atasan == 'true' ? 'DISETUJUI' : 'TIDAK DISETUJUI';
+ ?>
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Persetujuan Atasan</label>
                 <select name="bool_persetujuan_atasan" class="form-control">
-
+                    <option value=<?= $dp->bool_persetujuan_atasan; ?>> <?= $persetujuan; ?>  </option>
+                      <option value="false"> TIDAK DISETUJUI  </option>
                     <option value="true"> DISETUJUI </option>
-                    <option value="false"> TIDAK DISETUJUI  </option>
+
                 </select>
               </div>
 
